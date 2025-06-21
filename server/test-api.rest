@@ -1,2 +1,25 @@
 ### Testing API
-GET http://localhost:3000/
+GET http://localhost:3000/api
+
+###
+POST http://localhost:3000/api/auth/register
+Content-type: application/json
+
+{
+    "name": "Ramit Pandey",
+    "email": "ramitpandey2002@gmail.com",
+    "password": "Clashofclan1@"
+}
+
+###
+POST http://localhost:3000/api/auth/login
+Content-type: application/json
+
+{
+    "email": "ramitpandey2002@gmail.com",
+    "password": "Clashofclan1@"
+}
+
+###
+GET http://localhost:3000/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNTA0NTUzLCJleHAiOjE3NTA1MDgxNTN9.fSUjqE3JExxhxgFw1uEPSTs7Gl3azhXJoxNzpsg_l2I
