@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+
 const authRoute = require("./routes/auth");
+const booksRoute = require("./routes/books");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -11,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoute);
+app.use("/api/books", booksRoute);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

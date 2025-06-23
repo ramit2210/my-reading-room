@@ -1,7 +1,7 @@
 ### Testing API
 GET http://localhost:3000/api
 
-###
+### Register
 POST http://localhost:3000/api/auth/register
 Content-type: application/json
 
@@ -11,7 +11,7 @@ Content-type: application/json
     "password": "Clashofclan1@"
 }
 
-###
+### Login
 POST http://localhost:3000/api/auth/login
 Content-type: application/json
 
@@ -20,6 +20,24 @@ Content-type: application/json
     "password": "Clashofclan1@"
 }
 
-###
+### User
 GET http://localhost:3000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNTA0NTUzLCJleHAiOjE3NTA1MDgxNTN9.fSUjqE3JExxhxgFw1uEPSTs7Gl3azhXJoxNzpsg_l2I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+
+### Book Input
+POST http://localhost:3000/api/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+
+{
+    "title": "sublime art of not giving a f*ck",
+    "summary": "This book is about how to live a life without worrying too much about what others"
+}
+
+### Book Details
+GET http://localhost:3000/api/books
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+
+### Filter
+GET http://localhost:3000/api/books/filter?dateOrder=oldest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
