@@ -1,10 +1,20 @@
 import "./App.css";
+import NavBar from "./components/layouts/NavBar";
+import AppRoute from "./components/routes/AppRoute";
+import { AuthProvider } from "./context/AuthContext";
+import { BookProvider } from "./context/BookContext";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
     return (
-        <>
-            <div className="text-3xl font-bold underline">Testing...</div>
-        </>
+        <AuthProvider>
+            <BookProvider>
+                <BrowserRouter>
+                    <NavBar />
+                    <AppRoute />
+                </BrowserRouter>
+            </BookProvider>
+        </AuthProvider>
     );
 }
 

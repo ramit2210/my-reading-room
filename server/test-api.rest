@@ -22,12 +22,12 @@ Content-type: application/json
 
 ### User
 GET http://localhost:3000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
 
 ### Book Input
 POST http://localhost:3000/api/books
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
 
 {
     "title": "sublime art of not giving a f*ck",
@@ -36,8 +36,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0f
 
 ### Book Details
 GET http://localhost:3000/api/books
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
 
 ### Filter
-GET http://localhost:3000/api/books/filter?dateOrder=oldest
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNjA4MzA2LCJleHAiOjE3NTA2MTE5MDZ9.jh1haoJUp442h3OsRQfhRbpLaVSfuvcHQJp2OkYtSFk
+GET http://localhost:3000/api/books/filter?dateOrder=newest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+
+### Update
+PUT http://localhost:3000/api/books/7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+
+{
+    "title": "JP",
+    "summary": ""
+}
+
+### Delete
+DELETE http://localhost:3000/api/books/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw

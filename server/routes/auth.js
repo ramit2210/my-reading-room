@@ -127,7 +127,7 @@ router.get("/user", auth, async (req, res) => {
             })
             .from(users)
             .where(eq(users.id, req.user.id));
-        console.log(user);
+        // console.log(user);
         res.status(200).json(user);
     } catch (error) {
         return res.status(500).json({ massege: "Server error" });

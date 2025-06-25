@@ -8,9 +8,11 @@ const auth = require("../middlewares/auth");
 const getBookDetails = require("../utils/getBookDetails");
 const _ = require("lodash");
 
-// @router   GET /api/books
-// @desc     Get all books
-// @access   Private
+/**
+ * @route    GET /api/books
+ * @desc     Get all books for the authenticated user
+ * @access   Private
+ */
 router.get("/", auth, async (req, res) => {
     try {
         const userBooks = await db
@@ -37,9 +39,11 @@ router.get("/", auth, async (req, res) => {
     }
 });
 
-//@filter    GET /api/books/filter
-// @desc     Filter books by title and date
-// @access   Private
+/**
+ * @route    GET /api/books/filter
+ * @desc     Get filtered books for the authenticated user
+ * @access   Private
+ */
 router.get("/filter", auth, async (req, res) => {
     try {
         const { sortingOrder, dateOrder } = req.query;
@@ -68,7 +72,7 @@ router.get("/filter", auth, async (req, res) => {
             query = query.orderBy(...orderConditions);
         }
 
-        console.log(orderConditions);
+        // console.log(orderConditions);
 
         const filteredBooks = await query;
 
@@ -83,9 +87,11 @@ router.get("/filter", auth, async (req, res) => {
     }
 });
 
-// @router   POST /api/books
-// @desc     Create a new book
-// @access   Private
+/**
+ * @route    POST /api/books
+ * @desc     Create a new book for the authenticated user
+ * @access   Private
+ */
 router.post(
     "/",
     [auth, check("title", "Title is required").not().isEmpty()],
@@ -112,5 +118,47 @@ router.post(
         }
     }
 );
+
+/**
+ * @route    PUT /api/books/:id
+ * @desc     Update a book by ID for the authenticated user
+ * @access   Private
+ */
+router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const { title, summary } = req.body;
+    try {
+        const [updatedBook] = await db
+            .update(books)
+            .set({ title: _.startCase(_.toLower(title)), summary: summary })
+            .where(eq(books.id, id))
+            .returning();
+
+        if (!updatedBook) {
+            return res.status(404).json({ message: "Book not found" });
+        }
+
+        const updatedBookDetails = await db.select().from(books);
+
+        res.json(updatedBookDetails);
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" });
+    }
+});
+
+/**
+ * @route    DELETE /api/books/:id
+ * @desc     Delete a book by ID for the authenticated user
+ * @access   Private
+ */
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        await db.delete(books).where(eq(books.id, id));
+        res.json({ message: "Book deleted successfully" });
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" });
+    }
+});
 
 module.exports = router;
