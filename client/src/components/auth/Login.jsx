@@ -9,15 +9,15 @@ function Login() {
     });
 
     const { email, password } = formData;
-    const { login, isAuthenticated, error, clearError } =
+    const { login, isAuthenticated, error, clearErrors } =
         useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate("/");
+            navigate("/dashboard");
         }
-        return () => clearError();
+        return () => clearErrors();
     }, [isAuthenticated, navigate]);
 
     function handleChange(e) {
@@ -31,17 +31,21 @@ function Login() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        login(email, password);
+        login({ email, password });
     }
 
     return (
         <div className="flex items-center flex-col gap-6">
-            <h1 className="mt-8 text-2xl font-bold">Sign In</h1>
+            <h1 className="mt-20 text-2xl font-bold">Sign In</h1>
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-6 bg-gray-100 w-[28%] rounded-2xl shadow-2xl"
             >
-                {error && <p>{error}</p>}
+                {error && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        {error}
+                    </div>
+                )}
                 <div className="flex items-center flex-col pt-10 w-[100%]">
                     <label className="font-bold mr-[60%]">Email:</label>
                     <input

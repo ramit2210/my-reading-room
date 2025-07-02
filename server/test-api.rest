@@ -22,30 +22,30 @@ Content-type: application/json
 
 ### User
 GET http://localhost:3000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUxNDAwNzQ4LCJleHAiOjE3NTE0MDQzNDh9.HrqeW4yt_vTY4LYfh3P7a-Ua8qFF_In1sKPQ8946bq8
 
 ### Book Input
 POST http://localhost:3000/api/books
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUxNDAwNzQ4LCJleHAiOjE3NTE0MDQzNDh9.HrqeW4yt_vTY4LYfh3P7a-Ua8qFF_In1sKPQ8946bq8
 
 {
-    "title": "sublime art of not giving a f*ck",
-    "summary": "This book is about how to live a life without worrying too much about what others"
+    "title": "Atomic habits",
+    "summary": ""
 }
 
 ### Book Details
 GET http://localhost:3000/api/books
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUxNDAwNzQ4LCJleHAiOjE3NTE0MDQzNDh9.HrqeW4yt_vTY4LYfh3P7a-Ua8qFF_In1sKPQ8946bq8
 
 ### Filter
 GET http://localhost:3000/api/books/filter?dateOrder=newest
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUxNDAwNzQ4LCJleHAiOjE3NTE0MDQzNDh9.HrqeW4yt_vTY4LYfh3P7a-Ua8qFF_In1sKPQ8946bq8
 
 ### Update
 PUT http://localhost:3000/api/books/7
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUxNDAwNzQ4LCJleHAiOjE3NTE0MDQzNDh9.HrqeW4yt_vTY4LYfh3P7a-Ua8qFF_In1sKPQ8946bq8
 
 {
     "title": "JP",
@@ -53,5 +53,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0f
 }
 
 ### Delete
-DELETE http://localhost:3000/api/books/7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUwNzA0ODc0LCJleHAiOjE3NTA3MDg0NzR9.37cMBOxzRU4R-2o6-IlalJJXVM-2EcXH1cCXnrSJPhw
+DELETE http://localhost:3000/api/books/21
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzUxNDAwNzQ4LCJleHAiOjE3NTE0MDQzNDh9.HrqeW4yt_vTY4LYfh3P7a-Ua8qFF_In1sKPQ8946bq8

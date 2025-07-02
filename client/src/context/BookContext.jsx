@@ -1,6 +1,7 @@
 import { useReducer, createContext } from "react";
 import api from "../utils/api";
 
+// 1. Initial State
 const initialState = {
     books: [],
     filteredBooks: null,
@@ -8,8 +9,10 @@ const initialState = {
     error: null,
 };
 
+// 2. Create Context
 export const BookContext = createContext(initialState);
 
+// 3. Reducer
 function bookReducer(state, action) {
     switch (action.type) {
         case "GET_BOOKS":
@@ -19,32 +22,47 @@ function bookReducer(state, action) {
                 filteredBooks: null,
                 loading: false,
             };
-
         case "GET_FILTERED_BOOKS":
             return {
                 ...state,
-                loading: false,
                 filteredBooks: action.payload,
+                loading: false,
             };
-
         case "ADD_BOOK":
             return {
                 ...state,
                 books: [...state.books, action.payload],
                 loading: false,
             };
-
         case "UPDATE_BOOK":
             return {
                 ...state,
                 books: state.books.map((book) =>
-                    book.id === action.payload.id ? action.payload : book
+                    book.id === action.payload.id
+                        ? {
+                              ...book,
+                              ...action.payload,
+                              details: {
+                                  ...book.details,
+                                  ...(action.payload.details || {}),
+                              },
+                          }
+                        : book
                 ),
                 filteredBooks: state.filteredBooks
                     ? state.filteredBooks.map((book) =>
-                          book.id === action.payload.id ? action.payload : book
+                          book.id === action.payload.id
+                              ? {
+                                    ...book,
+                                    ...action.payload,
+                                    details: {
+                                        ...book.details,
+                                        ...(action.payload.details || {}),
+                                    },
+                                }
+                              : book
                       )
-                    : false,
+                    : null,
                 loading: false,
             };
 
@@ -59,38 +77,39 @@ function bookReducer(state, action) {
                     : null,
                 loading: false,
             };
-
         case "CLEAR_FILTER":
             return {
                 ...state,
                 filteredBooks: null,
             };
-
         case "BOOK_ERROR":
             return {
                 ...state,
                 error: action.payload,
                 loading: false,
             };
-
         case "CLEAR_ERROR":
             return {
                 ...state,
                 error: null,
             };
-
         default:
             return state;
     }
 }
 
-export function BookProvider({ children }) {
+// 4. Provider Component
+function BookProvider({ children }) {
     const [state, dispatch] = useReducer(bookReducer, initialState);
+
+    // --- API Actions ---
 
     async function getBooks() {
         try {
-            const books = await api.get("/books");
-            dispatch({ type: "GET_BOOKS", payload: books.data });
+            // console.log("Fetching books from API...");
+            const response = await api.get("/books");
+            console.log("Books fetched:", response.data);
+            dispatch({ type: "GET_BOOKS", payload: response.data });
         } catch (error) {
             dispatch({
                 type: "BOOK_ERROR",
@@ -122,12 +141,11 @@ export function BookProvider({ children }) {
             queryParam = `?dateOrder=${filterType}`;
         }
 
-        const url = `/books/filter${queryParam ? queryParam : ""}`;
         try {
-            const filteredBookDetails = await api.get(url);
+            const response = await api.get(`/books/filter${queryParam}`);
             dispatch({
                 type: "GET_FILTERED_BOOKS",
-                payload: filteredBookDetails.data,
+                payload: response.data,
             });
         } catch (error) {
             dispatch({
@@ -138,15 +156,13 @@ export function BookProvider({ children }) {
         }
     }
 
-    async function updateBooks(updatedData) {
+    // ⚠️ CRITICAL BUG FIX HERE:
+    async function updateBooks(bookId, updatedData) {
         try {
-            const updatedBookDetails = await api.put(
-                `/books/${bookId}`,
-                updatedData
-            );
+            const response = await api.put(`/books/${bookId}`, updatedData);
             dispatch({
                 type: "UPDATE_BOOK",
-                payload: updatedBookDetails.data,
+                payload: response.data,
             });
         } catch (error) {
             dispatch({
@@ -181,6 +197,7 @@ export function BookProvider({ children }) {
         dispatch({ type: "CLEAR_ERROR" });
     }
 
+    // 5. Final Context Value
     const contextValue = {
         books: state.books,
         filteredBooks: state.filteredBooks,
@@ -194,9 +211,12 @@ export function BookProvider({ children }) {
         clearFilter,
         clearError,
     };
+
     return (
-        <BookContext.Provider value={{ contextValue }}>
+        <BookContext.Provider value={contextValue}>
             {children}
         </BookContext.Provider>
     );
 }
+
+export default BookProvider;

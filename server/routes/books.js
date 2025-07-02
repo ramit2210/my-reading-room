@@ -67,12 +67,15 @@ router.get("/filter", auth, async (req, res) => {
             );
         }
 
-        let query = db.select().from(books);
+        // FIX: Add user filtering
+        let query = db
+            .select()
+            .from(books)
+            .where(eq(books.userId, req.user.id)); // Filter by authenticated user
+
         if (orderConditions.length > 0) {
             query = query.orderBy(...orderConditions);
         }
-
-        // console.log(orderConditions);
 
         const filteredBooks = await query;
 
@@ -138,9 +141,9 @@ router.put("/:id", async (req, res) => {
             return res.status(404).json({ message: "Book not found" });
         }
 
-        const updatedBookDetails = await db.select().from(books);
+        // const updatedBookDetails = await db.select().from(books);
 
-        res.json(updatedBookDetails);
+        res.json(updatedBook);
     } catch (error) {
         return res.status(500).json({ message: "Server error" });
     }

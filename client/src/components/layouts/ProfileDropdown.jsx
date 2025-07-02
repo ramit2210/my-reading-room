@@ -51,7 +51,7 @@ function ProfileDropdown() {
                             </p>
                             <button
                                 onClick={logout}
-                                className="block w-full text-center py-2 border rounded text-red-500 font-bold hover:bg-red-50"
+                                className="block w-full text-center py-2 border rounded bg-indigo-600 text-white font-bold hover:bg-indigo-500"
                             >
                                 LOGOUT
                             </button>
