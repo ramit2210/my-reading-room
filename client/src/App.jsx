@@ -4,6 +4,7 @@ import AppRoute from "./components/routes/AppRoute";
 import AuthProvider from "./context/AuthContext";
 import BookProvider from "./context/BookContext";
 import { BrowserRouter } from "react-router-dom";
+import SearchProvider from "./context/SearchContext";
 
 function App() {
     return (
@@ -11,8 +12,10 @@ function App() {
             <AuthProvider>
                 <BookProvider>
                     <BrowserRouter>
-                        <NavBar />
-                        <AppRoute />
+                        <SearchProvider>
+                            <NavBar />
+                            <AppRoute />
+                        </SearchProvider>
                     </BrowserRouter>
                 </BookProvider>
             </AuthProvider>
