@@ -111,7 +111,7 @@ function DashboardT() {
 
             <button
                 onClick={() => navigate("/form")}
-                className="fixed flex justify-center items-center cursor-pointer right-12 bottom-6 text-white text-3xl bg-indigo-600 h-13 w-13 rounded-full shadow-lg transform transition-transform duration-300 hover:-translate-y-2 hover:scale-110 hover:bg-indigo-500"
+                className="fixed flex justify-center items-center cursor-pointer right-14 bottom-10 text-white text-3xl bg-indigo-600 h-13 w-13 rounded-full shadow-lg transform transition-transform duration-300 hover:-translate-y-2 hover:scale-110 hover:bg-indigo-500"
             >
                 <IoMdAdd />
             </button>
