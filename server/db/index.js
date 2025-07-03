@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { drizzle } = require("drizzle-orm/node-postgres");
+const { drizzle } = require("drizzle-orm/neon-http");
 const { users } = require("./schema/users");
 const { books } = require("./schema/books");
 
